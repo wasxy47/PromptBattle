@@ -1,0 +1,8 @@
+node_modules
+.next
+.env.local
+.env
+venv/
+backend/venv/
+.vscode/
+.idea/

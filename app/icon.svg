@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a0a0a"/>
+      <stop offset="100%" stop-color="#030208"/>
+    </radialGradient>
+    <linearGradient id="blade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#ffb800"/>
+      <stop offset="100%" stop-color="#ff2d2d"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <circle cx="32" cy="32" r="30" fill="url(#bg)" stroke="rgba(255,184,0,0.4)" stroke-width="1.5"/>
+  <!-- Blade glow -->
+  <path d="M16 52 L48 12" stroke="rgba(255,45,45,0.4)" stroke-width="8" stroke-linecap="round"/>
+  <!-- Blade -->
+  <path d="M16 52 L48 12" stroke="url(#blade)" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Blade edge -->
+  <path d="M17 51 L47 13" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" stroke-linecap="round"/>
+  <!-- Guard (cross) -->
+  <line x1="22" y1="44" x2="42" y2="24" stroke="#ff2d2d" stroke-width="3" stroke-linecap="round"
+    transform="rotate(90 32 34)" filter="url(#glow)"/>
+  <!-- Pommel -->
+  <circle cx="14" cy="54" r="3" fill="#ffb800" filter="url(#glow)"/>
+  <!-- Tip flash -->
+  <circle cx="50" cy="10" r="3" fill="#ffffff" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="50" cy="10" r="5" fill="rgba(255,255,255,0.2)"/>
+</svg>
