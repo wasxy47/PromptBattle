@@ -3,6 +3,7 @@ import './globals.css'
 import { Navigation } from '@/components/Navigation'
 import { CustomCursor } from '@/components/CustomCursor'
 import { Particles } from '@/components/Particles'
+import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <body
-        className="min-h-screen antialiased"
+        className="min-h-screen antialiased flex flex-col"
         style={{
           background: 'var(--bg-void)',
           color: '#f0eeff',
@@ -34,7 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CustomCursor />
         <Particles />
         <Navigation />
-        <main className="relative z-10">{children}</main>
+        <main className="relative z-10 flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   )
