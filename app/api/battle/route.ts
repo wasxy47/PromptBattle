@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { calculateBattleResult, PromptInput } from '@/lib/judge'
 import { getServerSupabase } from '@/lib/supabase-server'
+import { battleRateLimiter } from '@/lib/rate-limit'
 
 async function upsertPrompt(db: ReturnType<typeof import('@/lib/supabase-server').getServerSupabase>, prompt: PromptInput): Promise<string> {
   const { data, error } = await db
@@ -61,6 +62,23 @@ async function saveBattle(
 
 export async function POST(req: NextRequest) {
   try {
+    // 1. Rate Limiting Check
+    const ip = req.ip ?? req.headers.get('x-forwarded-for') ?? '127.0.0.1'
+    const limitResult = battleRateLimiter.check(ip)
+    
+    if (!limitResult.success) {
+      return NextResponse.json(
+        { success: false, data: null, error: 'Rate limit exceeded. Please wait a minute before starting another battle.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limitResult.limit.toString(),
+            'X-RateLimit-Remaining': limitResult.remaining.toString(),
+          }
+        }
+      )
+    }
+
     const body = await req.json()
     const { prompt_a, prompt_b, prompt_a_id, prompt_b_id, save_prompts } = body as {
       prompt_a: PromptInput

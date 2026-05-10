@@ -63,6 +63,7 @@ PromptBattle removes the guesswork with objective, reproducible, bias-mitigated 
 | 🔄 **Dual-Run Bias Mitigation** | Every battle runs twice in parallel with prompt order swapped — scores are averaged to eliminate position bias |
 | 📊 **Score Radar Chart** | Visual radar/spider chart comparing both prompts across all 5 dimensions |
 | ⚖️ **Verbosity Bias Detection** | Tracks whether the judge unfairly favors longer prompts |
+| 🛡️ **API Abuse Protection** | Built-in IP-based rate limiting (max 5 battles/min) to prevent API exhaustion |
 | 🗃️ **Fighter Library** | Full CRUD for your prompt collection with battle history per prompt |
 | 🏅 **Champion Leaderboard** | Ranked table of all prompts sorted by wins, win rate, and average score |
 | 📈 **Calibration Dashboard** | Analytics on judge consistency, position bias trend, and verbosity correlation scatter chart |
